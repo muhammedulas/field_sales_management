@@ -1,11 +1,17 @@
+import 'package:field_sales_management/login.dart';
+import 'package:field_sales_management/pages/tasks_page.dart';
 import 'package:field_sales_management/pages/chat_page.dart';
-import 'package:field_sales_management/pages/notifications_page.dart';
-import 'package:field_sales_management/pages/search_page.dart';
+import 'package:field_sales_management/pages/orders_page.dart';
+import 'package:field_sales_management/services/auth_service.dart';
 import 'package:flutter/material.dart';
-import './pages/home_page.dart';
+import 'package:provider/provider.dart';
+import 'pages/price_offers_page.dart';
 
 void main() {
-  runApp(const App());
+  runApp(ChangeNotifierProvider<AuthService>(
+    create: (BuildContext context) => AuthService(),
+    child: const App(),
+  ));
 }
 
 class App extends StatelessWidget {
@@ -13,12 +19,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.indigo),
-      title: "My First App",
-      home: const MainPage(
-        title: "Main",
-      ),
-    );
+        theme: ThemeData(primaryColor: Colors.indigo),
+        title: "My First App",
+        home: Provider.of<AuthService>(context).loggedIn
+            ? const MainPage(title: "Main")
+            : const LoginPage());
   }
 }
 
@@ -33,10 +38,10 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
   static const pages = [
-    HomePage(),
-    SearchPage(),
-    ChatPage(),
-    NotificationsPage()
+    PriceOffersPage(),
+    OrdersPage(),
+    TasksPage(),
+    ChatPage()
   ];
 
   @override
@@ -55,11 +60,13 @@ class _MainPageState extends State<MainPage> {
           unselectedItemColor: Colors.blueAccent.shade100,
           selectedItemColor: Colors.blue,
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-            BottomNavigationBarItem(icon: Icon(Icons.message), label: "Chat"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.notifications), label: "Notifications")
+                icon: Icon(Icons.price_check), label: "Teklif"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.local_shipping), label: "Sipariş"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.pending_actions), label: "Görevlendirmeler"),
+            BottomNavigationBarItem(icon: Icon(Icons.message), label: "Sohbet")
           ]),
     );
   }

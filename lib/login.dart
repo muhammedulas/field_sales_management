@@ -1,4 +1,6 @@
+import 'package:field_sales_management/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -10,11 +12,14 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         body: Center(
       child: ElevatedButton(
-        child: Text("Giriş"),
-        onPressed: null,
+        child: const Text("Login"),
+        onPressed: () {
+          var authService = Provider.of<AuthService>(context, listen: false);
+          authService.login();
+        },
       ),
     ));
   }

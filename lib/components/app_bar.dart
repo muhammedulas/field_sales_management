@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-AppBar getGlobalAppbar(String title) {
+AppBar globalAppbar(String title, VoidCallback? callback) {
   return AppBar(
     title: Text(title),
     backgroundColor: Colors.transparent,
     shadowColor: Colors.transparent,
     foregroundColor: Colors.black,
-    actions: const [Icon(Icons.abc)],
+    actions: [IconButton(onPressed: callback, icon: const Icon(Icons.logout))],
   );
 }

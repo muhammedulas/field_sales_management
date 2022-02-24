@@ -4,15 +4,15 @@ import 'package:provider/provider.dart';
 import '../components/app_bar.dart';
 import '../services/auth_service.dart';
 
-class ChatPage extends StatefulWidget {
-  const ChatPage({Key? key}) : super(key: key);
-  static const String title = "Sohbet";
+class OrdersPage extends StatefulWidget {
+  const OrdersPage({Key? key}) : super(key: key);
+  static const String title = "Sipariş";
 
   @override
-  State<ChatPage> createState() => _ChatPageState();
+  State<OrdersPage> createState() => _OrdersPageState();
 }
 
-class _ChatPageState extends State<ChatPage> {
+class _OrdersPageState extends State<OrdersPage> {
   void logout() {
     var authService = Provider.of<AuthService>(context);
     authService.logout();
@@ -20,7 +20,7 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: globalAppbar("Sohbet", logout),
+        appBar: globalAppbar("Sipariş", logout),
         body: const Center(child: CircularProgressIndicator()),
         backgroundColor: Colors.white,
       );
