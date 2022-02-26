@@ -19,7 +19,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(primaryColor: Colors.indigo),
+        theme: ThemeData(primaryColor: Colors.black),
+        darkTheme: ThemeData.dark(),
+        themeMode: ThemeMode.system,
         title: "My First App",
         home: Provider.of<AuthService>(context).loggedIn
             ? const MainPage(title: "Main")

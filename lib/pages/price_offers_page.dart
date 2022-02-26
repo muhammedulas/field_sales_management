@@ -18,9 +18,14 @@ class _PriceOffersPageState extends State<PriceOffersPage> {
     authService.logout();
   }
 
+  void switchTheme() {
+    var authService = Provider.of<AuthService>(context, listen: false);
+    authService.switchTheme();
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: globalAppbar("Teklif", logout),
+        appBar: globalAppbar("Teklif", logout, switchTheme),
         body: const Center(
           child: CircularProgressIndicator(),
         ),
@@ -28,6 +33,5 @@ class _PriceOffersPageState extends State<PriceOffersPage> {
           onPressed: null,
           child: Icon(Icons.add),
         ),
-        backgroundColor: Colors.white,
       );
 }

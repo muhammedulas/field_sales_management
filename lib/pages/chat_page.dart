@@ -14,14 +14,18 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   void logout() {
-    var authService = Provider.of<AuthService>(context);
+    var authService = Provider.of<AuthService>(context, listen: false);
     authService.logout();
+  }
+
+  void switchTheme() {
+    var authService = Provider.of<AuthService>(context, listen: false);
+    authService.switchTheme();
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: globalAppbar("Sohbet", logout),
+        appBar: globalAppbar("Sohbet", logout, switchTheme),
         body: const Center(child: CircularProgressIndicator()),
-        backgroundColor: Colors.white,
       );
 }

@@ -13,14 +13,18 @@ class TasksPage extends StatefulWidget {
 
 class _TasksPageState extends State<TasksPage> {
   void logout() {
-    var authService = Provider.of<AuthService>(context);
+    var authService = Provider.of<AuthService>(context, listen: false);
     authService.logout();
+  }
+
+  void switchTheme() {
+    var authService = Provider.of<AuthService>(context, listen: false);
+    authService.switchTheme();
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: globalAppbar("Görevlendirmeler", logout),
+        appBar: globalAppbar("Görevlendirmeler", logout, switchTheme),
         body: const Center(child: CircularProgressIndicator()),
-        backgroundColor: Colors.white,
       );
 }

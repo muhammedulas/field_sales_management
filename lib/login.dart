@@ -1,6 +1,6 @@
-import 'package:field_sales_management/services/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
+import 'components/login_form.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,14 +13,21 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: ElevatedButton(
-        child: const Text("Login"),
-        onPressed: () {
-          var authService = Provider.of<AuthService>(context, listen: false);
-          authService.login();
-        },
-      ),
+        /* resizeToAvoidBottomInset: false, */
+        body: Column(
+      children: [
+        Row(children: const [
+          Icon(Icons.insert_chart, size: 80),
+          Text(
+            "F S M",
+            style: TextStyle(fontSize: 25),
+          )
+        ], mainAxisAlignment: MainAxisAlignment.center),
+        const SizedBox(height: 10),
+        const LoginForm(),
+      ],
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
     ));
   }
 }

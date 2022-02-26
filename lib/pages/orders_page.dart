@@ -14,14 +14,18 @@ class OrdersPage extends StatefulWidget {
 
 class _OrdersPageState extends State<OrdersPage> {
   void logout() {
-    var authService = Provider.of<AuthService>(context);
+    var authService = Provider.of<AuthService>(context, listen: false);
     authService.logout();
+  }
+
+  void switchTheme() {
+    var authService = Provider.of<AuthService>(context, listen: false);
+    authService.switchTheme();
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: globalAppbar("Sipariş", logout),
+        appBar: globalAppbar("Sipariş", logout, switchTheme),
         body: const Center(child: CircularProgressIndicator()),
-        backgroundColor: Colors.white,
       );
 }
