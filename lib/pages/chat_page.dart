@@ -20,7 +20,7 @@ class _ChatPageState extends State<ChatPage> {
 
   void switchTheme() {
     var authService = Provider.of<AuthService>(context, listen: false);
-    authService.switchTheme();
+    authService.setTheme();
   }
 
   @override

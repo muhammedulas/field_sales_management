@@ -20,7 +20,7 @@ class _PriceOffersPageState extends State<PriceOffersPage> {
 
   void switchTheme() {
     var authService = Provider.of<AuthService>(context, listen: false);
-    authService.switchTheme();
+    authService.setTheme();
   }
 
   @override

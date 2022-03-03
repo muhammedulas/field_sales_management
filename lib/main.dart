@@ -18,10 +18,39 @@ class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    AuthService authProvider = Provider.of<AuthService>(context);
+    ThemeMode theme = authProvider.theme;
+
     return MaterialApp(
-        theme: ThemeData(primaryColor: Colors.black),
-        darkTheme: ThemeData.dark(),
-        themeMode: ThemeMode.system,
+        theme: ThemeData.from(
+            colorScheme: const ColorScheme(
+          brightness: Brightness.light,
+          primary: Colors.blue,
+          onPrimary: Color(0XFF5E5775),
+          secondary: Colors.blue,
+          onSecondary: Color.fromARGB(255, 98, 86, 138),
+          error: Colors.amber,
+          onError: Colors.amber,
+          background: Color(0xFFF7F8FB),
+          onBackground: Color(0XFF5E5775),
+          surface: Color(0XFFFFFEFF),
+          onSurface: Color(0XFF5E5775),
+        )),
+        darkTheme: ThemeData.from(
+            colorScheme: const ColorScheme(
+          brightness: Brightness.dark,
+          primary: Color(0xFFAF3CFF),
+          onPrimary: Color(0xFFE5E6EB),
+          secondary: Color(0xFFAC68F4),
+          onSecondary: Color(0xFFE5E6EB),
+          error: Colors.red,
+          onError: Colors.white,
+          background: Color(0xFF2B3865),
+          onBackground: Color(0xFFE5E6EB),
+          surface: Color(0xFF071540),
+          onSurface: Color(0xFFE5E6EB),
+        )),
+        themeMode: theme,
         title: "My First App",
         home: Provider.of<AuthService>(context).loggedIn
             ? const MainPage(title: "Main")
@@ -48,19 +77,27 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    AuthService authProvider = Provider.of<AuthService>(context);
+    Color selected = authProvider.theme == ThemeMode.dark
+        ? const Color(0xFF071540)
+        : const Color.fromARGB(255, 49, 31, 107);
+
+    Color unselected = authProvider.theme == ThemeMode.dark
+        ? const Color(0xFFE5E6EB)
+        : const Color(0XFF5E5775);
     return Scaffold(
       body: IndexedStack(
         index: currentIndex,
         children: pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.transparent,
+          selectedItemColor: selected,
+          unselectedItemColor: unselected,
+          elevation: 12,
           currentIndex: currentIndex,
           onTap: (index) => setState(() {
                 currentIndex = index;
               }),
-          unselectedItemColor: Colors.blueAccent.shade100,
-          selectedItemColor: Colors.blue,
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.price_check), label: "Teklif"),

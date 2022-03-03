@@ -20,7 +20,7 @@ class _OrdersPageState extends State<OrdersPage> {
 
   void switchTheme() {
     var authService = Provider.of<AuthService>(context, listen: false);
-    authService.switchTheme();
+    authService.setTheme();
   }
 
   @override
