@@ -1,11 +1,11 @@
-import 'package:field_sales_management/login.dart';
-import 'package:field_sales_management/pages/tasks_page.dart';
-import 'package:field_sales_management/pages/chat_page.dart';
-import 'package:field_sales_management/pages/orders_page.dart';
+import 'package:field_sales_management/screens/login_screen.dart';
+import 'package:field_sales_management/screens/main/tasks_screen.dart';
+import 'package:field_sales_management/screens/main/chat_screen.dart';
+import 'package:field_sales_management/screens/main/orders_screen.dart';
 import 'package:field_sales_management/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'pages/price_offers_page.dart';
+import 'screens/main/price_offers_screen.dart';
 
 void main() {
   runApp(ChangeNotifierProvider<AuthService>(
@@ -19,42 +19,65 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthService authProvider = Provider.of<AuthService>(context);
-    ThemeMode theme = authProvider.theme;
 
     return MaterialApp(
         theme: ThemeData.from(
             colorScheme: const ColorScheme(
-          brightness: Brightness.light,
-          primary: Colors.blue,
-          onPrimary: Color(0XFF5E5775),
-          secondary: Colors.blue,
-          onSecondary: Color.fromARGB(255, 98, 86, 138),
-          error: Colors.amber,
-          onError: Colors.amber,
-          background: Color(0xFFF7F8FB),
-          onBackground: Color(0XFF5E5775),
-          surface: Color(0XFFFFFEFF),
-          onSurface: Color(0XFF5E5775),
-        )),
+                brightness: Brightness.light,
+                primary: Color(0xFF6750A4),
+                onPrimary: Color(0xFF071540),
+                secondary: Color(0XFF625B71),
+                onSecondary: Color(0XFFFFFFFF),
+                tertiary: Color(0xFF7D5260),
+                onTertiary: Color(0xFFFFFFFF),
+                error: Color(0XFFB3261E),
+                onError: Color(0XFFFFFFFF),
+                background: Color(0XFFFFFBFE),
+                onBackground: Color(0XFF1C1B1F),
+                primaryContainer: Color(0xFFEADDFF),
+                onPrimaryContainer: Color(0xFF21005D),
+                secondaryContainer: Color(0xFFE8DEF8),
+                onSecondaryContainer: Color(0xFF1D192B),
+                tertiaryContainer: Color(0xFFFFD8E4),
+                onTertiaryContainer: Color(0xFF31111D),
+                errorContainer: Color(0xFFF9DEDC),
+                onErrorContainer: Color(0xFF410E0B),
+                surface: Color(0XFFFFFBFE),
+                onSurface: Color(0XFF1C1B1F),
+                surfaceVariant: Color(0xFFE7E0EC),
+                onSurfaceVariant: Color(0xFF49454F),
+                outline: Color(0xFF79747E))),
         darkTheme: ThemeData.from(
             colorScheme: const ColorScheme(
-          brightness: Brightness.dark,
-          primary: Color(0xFFAF3CFF),
-          onPrimary: Color(0xFFE5E6EB),
-          secondary: Color(0xFFAC68F4),
-          onSecondary: Color(0xFFE5E6EB),
-          error: Colors.red,
-          onError: Colors.white,
-          background: Color(0xFF2B3865),
-          onBackground: Color(0xFFE5E6EB),
-          surface: Color(0xFF071540),
-          onSurface: Color(0xFFE5E6EB),
-        )),
-        themeMode: theme,
+                brightness: Brightness.dark,
+                primary: Color(0XFFD0BCFF),
+                onPrimary: Color(0XFF381E72),
+                secondary: Color(0XFFCCC2DC),
+                onSecondary: Color(0XFF332D41),
+                tertiary: Color(0xFFEFB8C8),
+                onTertiary: Color(0xFF492532),
+                error: Color(0XFFF2B8B5),
+                onError: Color(0XFF601410),
+                background: Color(0XFF1C1B1F),
+                onBackground: Color(0XFFE6E1E5),
+                primaryContainer: Color(0xFF4F378B),
+                onPrimaryContainer: Color(0xFFEADDFF),
+                secondaryContainer: Color(0xFF4A4458),
+                onSecondaryContainer: Color(0xFFE8DEF8),
+                tertiaryContainer: Color(0xFF633B48),
+                onTertiaryContainer: Color(0xFFFFD8E4),
+                errorContainer: Color(0xFF8C1D18),
+                onErrorContainer: Color(0xFFF9DEDC),
+                surface: Color(0XFF1C1B1F),
+                onSurface: Color(0XFFE6E1E5),
+                surfaceVariant: Color(0xFF49454F),
+                onSurfaceVariant: Color(0xFFCAC4D0),
+                outline: Color(0xFF938F99))),
+        themeMode: authProvider.darkMode ? ThemeMode.dark : ThemeMode.light,
         title: "My First App",
         home: Provider.of<AuthService>(context).loggedIn
             ? const MainPage(title: "Main")
-            : const LoginPage());
+            : const LoginScreen());
   }
 }
 
@@ -63,32 +86,32 @@ class MainPage extends StatefulWidget {
   final String title;
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<MainPage> createState() => _Mainscreenstate();
 }
 
-class _MainPageState extends State<MainPage> {
+class _Mainscreenstate extends State<MainPage> {
   int currentIndex = 0;
-  static const pages = [
-    PriceOffersPage(),
-    OrdersPage(),
-    TasksPage(),
-    ChatPage()
+  static const screens = [
+    PriceOffersScreen(),
+    OrdersScreen(),
+    TasksScreen(),
+    ChatScreen()
   ];
 
   @override
   Widget build(BuildContext context) {
     AuthService authProvider = Provider.of<AuthService>(context);
-    Color selected = authProvider.theme == ThemeMode.dark
+    Color selected = authProvider.darkMode
         ? const Color(0xFF071540)
         : const Color.fromARGB(255, 49, 31, 107);
 
-    Color unselected = authProvider.theme == ThemeMode.dark
+    Color unselected = authProvider.darkMode
         ? const Color(0xFFE5E6EB)
         : const Color(0XFF5E5775);
     return Scaffold(
       body: IndexedStack(
         index: currentIndex,
-        children: pages,
+        children: screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: selected,

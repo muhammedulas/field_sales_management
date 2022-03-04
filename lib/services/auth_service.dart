@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AuthService with ChangeNotifier {
   bool loggedIn = false;
-  late ThemeMode theme = ThemeMode.system;
+  bool darkMode = false;
 
   void login() {
     loggedIn = true;
@@ -15,13 +15,7 @@ class AuthService with ChangeNotifier {
   }
 
   void setTheme() {
-    if (theme == ThemeMode.dark) {
-      theme = ThemeMode.light;
-    } else if (theme == ThemeMode.light) {
-      theme = ThemeMode.system;
-    } else {
-      theme = ThemeMode.dark;
-    }
+    darkMode = !darkMode;
     notifyListeners();
   }
 }

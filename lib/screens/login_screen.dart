@@ -1,15 +1,45 @@
-import 'package:field_sales_management/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../services/auth_service.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _LoginScreenState extends State<LoginScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        /* resizeToAvoidBottomInset: false, */
+        body: Column(
+      children: [
+        Row(children: const [
+          Icon(Icons.insert_chart, size: 80),
+          Text(
+            "F S M",
+            style: TextStyle(fontSize: 25),
+          )
+        ], mainAxisAlignment: MainAxisAlignment.center),
+        const SizedBox(height: 10),
+        const LoginScreenContent(),
+      ],
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+    ));
+  }
+}
+
+class LoginScreenContent extends StatefulWidget {
+  const LoginScreenContent({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreenContent> createState() => _LoginScreenContentState();
+}
+
+class _LoginScreenContentState extends State<LoginScreenContent> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -87,14 +117,11 @@ class _LoginFormState extends State<LoginForm> {
                 )),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 Padding(
-                  padding: const EdgeInsets.only(left: 40, right: 40),
+                  padding: EdgeInsets.only(left: 40, right: 40),
                   child: TextButton(
-                      onPressed: () {
-                        const AlertDialog();
-                      },
-                      child: const Text("Şifremi Unuttum")),
+                      onPressed: null, child: Text("Şifremi Unuttum")),
                 )
               ],
             )
