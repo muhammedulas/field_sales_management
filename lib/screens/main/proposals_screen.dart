@@ -2,15 +2,15 @@ import 'package:field_sales_management/components/app_bar.dart';
 import 'package:flutter/material.dart';
 import '../settings_screen.dart';
 
-class PriceOffersScreen extends StatefulWidget {
-  const PriceOffersScreen({Key? key}) : super(key: key);
+class ProposalsScreen extends StatefulWidget {
+  const ProposalsScreen({Key? key}) : super(key: key);
   static const String title = "Teklif";
 
   @override
-  State<PriceOffersScreen> createState() => _PriceOffersScreenState();
+  State<ProposalsScreen> createState() => _ProposalsScreenState();
 }
 
-class _PriceOffersScreenState extends State<PriceOffersScreen> {
+class _ProposalsScreenState extends State<ProposalsScreen> {
   goToSettings() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const SettingsScreen()));
@@ -22,9 +22,9 @@ class _PriceOffersScreenState extends State<PriceOffersScreen> {
         body: const Center(
           child: CircularProgressIndicator(),
         ),
-        floatingActionButton: const FloatingActionButton(
-          onPressed: null,
-          child: Icon(Icons.add),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.add, size: 35),
         ),
       );
 }

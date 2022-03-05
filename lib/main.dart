@@ -5,7 +5,7 @@ import 'package:field_sales_management/screens/main/orders_screen.dart';
 import 'package:field_sales_management/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'screens/main/price_offers_screen.dart';
+import 'screens/main/proposals_screen.dart';
 
 void main() {
   runApp(ChangeNotifierProvider<AuthService>(
@@ -86,13 +86,13 @@ class MainPage extends StatefulWidget {
   final String title;
 
   @override
-  State<MainPage> createState() => _Mainscreenstate();
+  State<MainPage> createState() => _MainScreenstate();
 }
 
-class _Mainscreenstate extends State<MainPage> {
+class _MainScreenstate extends State<MainPage> {
   int currentIndex = 0;
   static const screens = [
-    PriceOffersScreen(),
+    ProposalsScreen(),
     OrdersScreen(),
     TasksScreen(),
     ChatScreen()

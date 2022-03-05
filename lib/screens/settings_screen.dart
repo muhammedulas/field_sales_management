@@ -1,4 +1,5 @@
 import 'package:field_sales_management/components/app_bar.dart';
+import 'package:field_sales_management/screens/settings/reset_password_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -66,7 +67,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       backgroundColor: Colors.indigo,
                     ),
                     title: 'Karanlık Mod',
-                    subtitle: authService.darkMode ? "Kapalı" : "Açık",
+                    subtitle: authService.darkMode ? "Açık" : "Kapalı",
                     trailing: Switch.adaptive(
                       value: authService.darkMode,
                       onChanged: (value) {
@@ -96,6 +97,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 items: [
                   SettingsItem(
                     onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const ResetPasswordScreen(),
+                        ),
+                      );
+                    },
+                    icons: Icons.password,
+                    iconStyle: IconStyle(
+                      withBackground: true,
+                      backgroundColor: Colors.redAccent,
+                    ),
+                    title: "Şifre Değiştir",
+                  ),
+                  SettingsItem(
+                    onTap: () {
                       Provider.of<AuthService>(context, listen: false).logout();
                       if (Navigator.canPop(context)) {
                         Navigator.pop(context);
@@ -106,18 +122,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     icons: Icons.exit_to_app_rounded,
                     iconStyle: IconStyle(
                       withBackground: true,
-                      backgroundColor: Colors.deepOrange,
+                      backgroundColor: Colors.red,
                     ),
                     title: "Çıkış Yap",
-                  ),
-                  SettingsItem(
-                    onTap: () {},
-                    icons: CupertinoIcons.delete_solid,
-                    iconStyle: IconStyle(
-                      withBackground: true,
-                      backgroundColor: Colors.redAccent,
-                    ),
-                    title: "Şifre Değiştir",
                     titleStyle: const TextStyle(
                       color: Colors.red,
                       fontWeight: FontWeight.bold,
