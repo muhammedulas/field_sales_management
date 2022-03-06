@@ -21,7 +21,7 @@ class _ResetPasswordScreenStare extends State<ResetPasswordScreen> {
     return ChangeNotifierProvider<AuthService>(
       create: (context) => AuthService(),
       child: Scaffold(
-          appBar: globalAppbar("Parola Sıfırla"),
+          appBar: globalAppbar("Parola Sıfırla", sourceContext: context),
           body: Padding(
               padding: const EdgeInsets.only(left: 40, right: 40),
               child: Form(
@@ -85,10 +85,16 @@ class _ResetPasswordScreenStare extends State<ResetPasswordScreen> {
                     const SizedBox(height: 5),
                     ElevatedButton(
                       onPressed: () {
-                        _formKey.currentState?.validate();
+                        if (_formKey.currentState?.validate() == true) {
+                          const snackBar = SnackBar(
+                            content: Text("Parolanız Değiştirildi"),
+                            backgroundColor: Colors.green,
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
                       },
                       child: const Text(
-                        "Parolayı Sıfırla",
+                        "Parolayı Değiştir",
                         style: TextStyle(fontSize: 20),
                       ),
                     )

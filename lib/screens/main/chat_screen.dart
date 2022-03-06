@@ -18,7 +18,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: globalAppbar("Sohbet", callback: goToSettings),
+        appBar: globalAppbar("Sohbet",
+            callback: goToSettings, sourceContext: context),
         body: const Center(child: CircularProgressIndicator()),
       );
 }

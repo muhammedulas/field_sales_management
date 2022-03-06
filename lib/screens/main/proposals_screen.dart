@@ -18,7 +18,8 @@ class _ProposalsScreenState extends State<ProposalsScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: globalAppbar("Teklif", callback: goToSettings),
+        appBar: globalAppbar("Teklif",
+            callback: goToSettings, sourceContext: context),
         body: const Center(
           child: CircularProgressIndicator(),
         ),

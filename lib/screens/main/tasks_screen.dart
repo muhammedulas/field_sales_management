@@ -18,7 +18,8 @@ class _TasksScreenState extends State<TasksScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: globalAppbar("Görevlendirmeler", callback: goToSettings),
+        appBar: globalAppbar("Görevlendirmeler",
+            callback: goToSettings, sourceContext: context),
         body: const Center(child: CircularProgressIndicator()),
       );
 }

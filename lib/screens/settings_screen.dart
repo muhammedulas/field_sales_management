@@ -27,7 +27,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return ChangeNotifierProvider<AuthService>(
       create: (context) => AuthService(),
       child: Scaffold(
-        appBar: globalAppbar("Ayarlar"),
+        appBar: globalAppbar("Ayarlar", sourceContext: context),
         body: Padding(
           padding: const EdgeInsets.all(10),
           child: ListView(
